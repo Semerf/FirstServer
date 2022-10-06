@@ -1,0 +1,7 @@
+{
+    "editor.minimap.autohide": false,
+    "workbench.activityBar.visible": true,
+    "workbench.statusBar.visible": true,
+    "workbench.tips.enabled": true,
+    "window.commandCenter": false
+}
