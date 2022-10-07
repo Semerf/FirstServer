@@ -18,7 +18,7 @@ type Task struct {
 	task_name string
 	duration  string
 	resource  int
-	prev_work []int
+	prev_work string
 	order_id  int
 }
 
@@ -64,9 +64,7 @@ func Database() {
 		tsks = append(tsks, tsk)
 	}
 	for _, tsk := range tsks {
-		fmt.Printf("%d, %s, %s, %d, ", tsk.task_id, tsk.task_name, tsk.duration, tsk.resource)
-		fmt.Print(tsk.prev_work)
-		fmt.Printf("%d \n", tsk.order_id)
+		fmt.Printf("%d, %s, %s, %d, %s, %d \n", tsk.task_id, tsk.task_name, tsk.duration, tsk.resource, tsk.prev_work, tsk.order_id)
 	}
 
 	//fmt.Println(ordrs)
