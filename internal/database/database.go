@@ -3,6 +3,7 @@ package database
 import (
 	"database/sql"
 	"fmt"
+	"log"
 
 	_ "github.com/jackc/pgx/v5/stdlib"
 )
@@ -29,19 +30,19 @@ func Database() {
 	//eitherDB, err := pgx.Connect(context.Background(), connStr)
 	db, err := sql.Open("pgx", connStr)
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 	fmt.Println("Записи из таблици orders...")
 	OrderRows, err := db.Query("SELECT * FROM orders")
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 	ordrs := make([]*Order, 0)
 	for OrderRows.Next() {
 		ordr := new(Order)
 		err := OrderRows.Scan(&ordr.order_id, &ordr.order_name, &ordr.start_date)
 		if err != nil {
-			panic(err)
+			log.Fatal(err)
 		}
 		ordrs = append(ordrs, ordr)
 	}
@@ -51,14 +52,14 @@ func Database() {
 	fmt.Println("Записи из таблици tasks...")
 	TaskRows, err := db.Query("SELECT * FROM tasks")
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 	tsks := make([]*Task, 0)
 	for TaskRows.Next() {
 		tsk := new(Task)
 		err := TaskRows.Scan(&tsk.task_id, &tsk.task_name, &tsk.duration, &tsk.resource, &tsk.prev_work, &tsk.order_id)
 		if err != nil {
-			panic(err)
+			log.Fatal(err)
 		}
 		tsks = append(tsks, tsk)
 	}
