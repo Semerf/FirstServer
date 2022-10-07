@@ -1,8 +1,9 @@
 package main
 
 import (
-	"GO/internal/database"
 	"fmt"
+
+	"github.com/semerf/FirstServer/internal/database"
 )
 
 func main() {

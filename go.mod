@@ -1,4 +1,4 @@
-module GO
+module github.com/semerf/FirstServer
 
 go 1.19
 
