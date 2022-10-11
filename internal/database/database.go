@@ -9,17 +9,17 @@ import (
 )
 
 type Order struct {
-	order_id   int
-	order_name string
-	start_date string
+	Order_id   int
+	Order_name string
+	Start_date string
 }
 type Task struct {
-	task_id   int
-	task_name string
-	duration  string
-	resource  int
-	prev_work string
-	order_id  int
+	Task_id   int
+	Task_name string
+	Duration  string
+	Resource  int
+	Prev_work string
+	Order_id  int
 }
 
 func Database() {
@@ -40,14 +40,14 @@ func Database() {
 	ordrs := make([]*Order, 0)
 	for OrderRows.Next() {
 		ordr := new(Order)
-		err := OrderRows.Scan(&ordr.order_id, &ordr.order_name, &ordr.start_date)
+		err := OrderRows.Scan(&ordr.Order_id, &ordr.Order_name, &ordr.Start_date)
 		if err != nil {
 			log.Fatal(err)
 		}
 		ordrs = append(ordrs, ordr)
 	}
 	for _, ordr := range ordrs {
-		fmt.Printf("%d, %s, %s \n", ordr.order_id, ordr.order_name, ordr.start_date)
+		fmt.Printf("%d, %s, %s \n", ordr.Order_id, ordr.Order_name, ordr.Start_date)
 	}
 	fmt.Println("Записи из таблици tasks...")
 	TaskRows, err := db.Query("SELECT * FROM tasks")
@@ -57,14 +57,14 @@ func Database() {
 	tsks := make([]*Task, 0)
 	for TaskRows.Next() {
 		tsk := new(Task)
-		err := TaskRows.Scan(&tsk.task_id, &tsk.task_name, &tsk.duration, &tsk.resource, &tsk.prev_work, &tsk.order_id)
+		err := TaskRows.Scan(&tsk.Task_id, &tsk.Task_name, &tsk.Duration, &tsk.Resource, &tsk.Prev_work, &tsk.Order_id)
 		if err != nil {
 			log.Fatal(err)
 		}
 		tsks = append(tsks, tsk)
 	}
 	for _, tsk := range tsks {
-		fmt.Printf("%d, %s, %s, %d, %s, %d \n", tsk.task_id, tsk.task_name, tsk.duration, tsk.resource, tsk.prev_work, tsk.order_id)
+		fmt.Printf("%d, %s, %s, %d, %s, %d \n", tsk.Task_id, tsk.Task_name, tsk.Duration, tsk.Resource, tsk.Prev_work, tsk.Order_id)
 	}
 
 	//fmt.Println(ordrs)
