@@ -1,0 +1,5 @@
+package calculate
+
+func calculator() {
+
+}
