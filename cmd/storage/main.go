@@ -8,10 +8,10 @@ import (
 )
 
 func main() {
-	fmt.Println("It's work!")
-	database.DatabaseShow()
 
-	fmt.Println(database.GetDatabase())
+	orders, tasks := database.GetDatabase()
+	fmt.Println(orders)
+	fmt.Println(tasks)
+
 	server.Server()
-
 }
