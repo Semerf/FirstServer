@@ -1,0 +1,30 @@
+_id: req_3f2861ed3816485cafaeb2c5fc5afcfe
+type: Request
+parentId: wrk_13d0012f367c4d518529987e9d2630c1
+modified: 1665645836535
+created: 1664365428125
+url: http://localhost:8081/
+name: New Request
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"order_id": 3,
+    	"order_name" : "Школьные уроки",
+    	"start_date": "11.10.2022"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1664365428125
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

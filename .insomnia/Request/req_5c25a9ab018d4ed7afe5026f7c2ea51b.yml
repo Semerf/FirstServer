@@ -1,0 +1,21 @@
+_id: req_5c25a9ab018d4ed7afe5026f7c2ea51b
+type: Request
+parentId: wrk_13d0012f367c4d518529987e9d2630c1
+modified: 1665645871477
+created: 1665644828216
+url: http://localhost:8081/order/2
+name: Delete order
+description: ""
+method: DELETE
+body: {}
+parameters: []
+headers: []
+authentication: {}
+metaSortKey: -1665644828216
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
