@@ -1,0 +1,33 @@
+_id: req_861e1bf0c92b43779ae7bd9bd7f6d774
+type: Request
+parentId: wrk_13d0012f367c4d518529987e9d2630c1
+modified: 1665645887649
+created: 1665602556966
+url: http://localhost:8081/2
+name: Post order
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"task_id": 2,
+    	"task_name": "Посмотреть наличие жуков",
+    	"duration": 3,
+    	"resource": 2,
+    	"previous_tasks": "1",
+    	"order_id": 2
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1665602556966
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
