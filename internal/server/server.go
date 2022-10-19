@@ -107,18 +107,18 @@ func HandlerOrder(w http.ResponseWriter, r *http.Request) {
 
 	switch r.Method {
 	case http.MethodGet:
-		orders, tasks := database.GetOrder(id)
-		ordersJson, err := json.Marshal(orders)
+		/*orders,*/ tasks := database.GetOrder(id)
+		/*ordersJson, err := json.Marshal(orders)
 		if err != nil {
 			log.Fatal(err)
-		}
+		}*/
 		tasksJson, err := json.Marshal(tasks)
 		if err != nil {
 			log.Fatal(err)
 		}
 		w.Header().Set("Content-type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		w.Write(ordersJson)
+		//w.Write(ordersJson)
 		w.Write(tasksJson)
 		println("Get works by order id")
 

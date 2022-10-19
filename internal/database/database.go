@@ -104,14 +104,14 @@ func GetDatabase() ([]Order, []Task) {
 	return ordrs, tsks
 }
 
-func GetOrder(id int) ([]Order, []Task) {
+func GetOrder(id int) /*[]Order,*/ []Task {
 	connStr := "postgres://postgres:1234@localhost:5432/cslab"
 	//eitherDB, err := pgx.Connect(context.Background(), connStr)
 	db, err := sql.Open("pgx", connStr)
 	if err != nil {
 		log.Fatal(err)
 	}
-	OrderRows, err := db.Query("SELECT * FROM orders WHERE order_id = $1", id)
+	/*OrderRows, err := db.Query("SELECT * FROM orders WHERE order_id = $1", id)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -123,10 +123,11 @@ func GetOrder(id int) ([]Order, []Task) {
 			log.Fatal(err)
 		}
 		ordrs = append(ordrs, ordr)
-	}
+	}*/
 	TaskRows, err := db.Query("SELECT * FROM tasks WHERE order_id = $1", id)
 	if err != nil {
 		log.Fatal(err)
+		return nil
 	}
 	tsks := make([]Task, 0)
 	for TaskRows.Next() {
@@ -137,7 +138,7 @@ func GetOrder(id int) ([]Order, []Task) {
 		}
 		tsks = append(tsks, tsk)
 	}
-	return ordrs, tsks
+	return /*ordrs,*/ tsks
 }
 
 func GetTask(id int) Task {
