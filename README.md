@@ -9,4 +9,3 @@ Create REST API of tmanagement service
 
 Write a computational service that calculates the duration of the project (assuming that there is a limit of resource use max = 10) by creating randomly 1000000 sequences of activities and calculates in parallel the durations of each sequence (a prototype of a genetic algorithm)
 
-Translated with www.DeepL.com/Translator (free version)
