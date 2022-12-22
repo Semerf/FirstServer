@@ -1,7 +1,6 @@
-package main
+package calculate
 
 import (
-	"context"
 	"fmt"
 	"log"
 	"math/rand"
@@ -9,15 +8,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/semerf/FirstServer/apigrpc/calcpb"
+	//"github.com/go-redis/redis/v8/internal/proto"
+	//"github.com/golang/protobuf/proto"
 	"github.com/semerf/FirstServer/internal/database"
 )
-
-type GRPCServer struct{}
-
-func (s *GRPCServer) Calc(ctx context.Context, req *calcpb.Request) (*calcpb.Response, error) {
-
-}
 
 const CommonRes int = 5
 
@@ -26,11 +20,7 @@ type TimeStamp struct {
 	end_time int
 }
 
-func main() {
-	fmt.Println("Hello, world!")
-}
-
-func Calculator(tasks []database.Task) {
+func Calculator(tasks []database.Task) int {
 	fmt.Print("\n Calculator \n ", tasks, "\n")
 	c := make(chan int, 10)
 	min := 1000000
@@ -45,7 +35,7 @@ func Calculator(tasks []database.Task) {
 	fmt.Println(min)
 	endTime := time.Now()
 	fmt.Println(endTime.Sub(beginTime))
-
+	return min
 }
 
 func Generate(tasks []database.Task, c chan int) {

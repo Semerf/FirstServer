@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option go_package = "./calcpb";
+package grpCalc;
+
+service Calculator {
+    rpc Calc(RequestQuery) returns (Response) {}
+}
+
+message Request {
+    int32 Task_id = 1;     
+	string Task_name = 2; 
+    int32 Duration = 3;
+	int32 Resource = 4;
+	string Prev_work = 5;
+	int32 Order_id = 6;   
+}
+
+message RequestQuery {
+    repeated Request Requests = 1;
+}
+
+message Response {
+    int32 message = 1;
+}
