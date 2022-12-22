@@ -1,6 +1,7 @@
-package calculate
+package main
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"math/rand"
@@ -8,14 +9,25 @@ import (
 	"strings"
 	"time"
 
+	"github.com/semerf/FirstServer/apigrpc/calcpb"
 	"github.com/semerf/FirstServer/internal/database"
 )
+
+type GRPCServer struct{}
+
+func (s *GRPCServer) Calc(ctx context.Context, req *calcpb.Request) (*calcpb.Response, error) {
+
+}
 
 const CommonRes int = 5
 
 type TimeStamp struct {
 	task     database.Task
 	end_time int
+}
+
+func main() {
+	fmt.Println("Hello, world!")
 }
 
 func Calculator(tasks []database.Task) {
