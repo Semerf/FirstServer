@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"time"
 
 	"github.com/gorilla/mux"
 	"google.golang.org/grpc"
@@ -75,7 +76,6 @@ func HandlerTask(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		w.Write(taskJson)
-		println("Get works by task id")
 
 	case http.MethodPost:
 		println("Task post works by task id")
@@ -125,7 +125,6 @@ func HandlerOrder(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusOK)
 		//w.Write(ordersJson)
 		w.Write(tasksJson)
-		println("Get works by order id")
 
 	case http.MethodPut:
 
@@ -149,7 +148,7 @@ func HandlerResult(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case http.MethodGet:
 		ctx := context.Background()
-
+		var resJson []byte
 		var res int32
 		rdb := redis.NewClient(&redis.Options{
 			Addr:     "localhost:6379",
@@ -189,9 +188,12 @@ func HandlerResult(w http.ResponseWriter, r *http.Request) {
 			fmt.Println(reqQ)
 			res = callCalc(client, &reqQ)
 
-			fmt.Println("key does not exist")
+			resJson, err = json.Marshal(res)
+			if err != nil {
+				log.Fatal(err)
+			}
 			//
-			err = rdb.Set(ctx, string(rune(id)), string(res), 0).Err()
+			err = rdb.Set(ctx, strconv.Itoa(id), res, time.Second*15).Err()
 			if err != nil {
 				panic(err)
 			}
@@ -199,18 +201,20 @@ func HandlerResult(w http.ResponseWriter, r *http.Request) {
 		} else if err != nil {
 			panic(err)
 		} else {
-			fmt.Println(string(rune(id)), val)
+			vali, err := strconv.Atoi(val)
+			if err != nil {
+				log.Fatal(err)
+			}
+			resJson, err = json.Marshal(vali)
+			if err != nil {
+				log.Fatal(err)
+			}
 		}
 
-		resJson, err := json.Marshal(res)
-		if err != nil {
-			log.Fatal(err)
-		}
 		w.Header().Set("Content-type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		//w.Write(ordersJson)
 		w.Write(resJson)
-		println("Get works by order id")
 
 	case http.MethodPut:
 
