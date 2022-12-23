@@ -25,7 +25,7 @@ func Calculator(tasks []database.Task) int {
 	c := make(chan int, 10)
 	min := 1000000
 	beginTime := time.Now()
-	for i := 0; i < 1000000; i++ {
+	for i := 0; i < 10000; i++ {
 		go Generate(tasks, c)
 		val := <-c
 		if val < min {
